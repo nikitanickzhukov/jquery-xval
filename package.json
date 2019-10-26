@@ -1,0 +1,29 @@
+{
+  "name": "jquery-xval",
+  "version": "1.0.0",
+  "description": "jQuery plugin for setting and getting input values",
+  "main": "gulpfile.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikitanickzhukov/jquery-xval.git"
+  },
+  "author": "Nikita N. Zhukov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nikitanickzhukov/jquery-xval/issues"
+  },
+  "homepage": "https://github.com/nikitanickzhukov/jquery-xval#readme",
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "babelify": "^7.3.0",
+    "browserify": "^16.5.0",
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-eslint": "^6.0.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2",
+    "path": "^0.12.7",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
+  }
+}

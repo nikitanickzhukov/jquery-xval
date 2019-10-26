@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+    <head>
+        <meta charset="utf-8">
+        <title>jQuery xval plugin</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    </head>
+    <body>
+        <h2>Text input</h2>
+        <p>
+            <input type="text" class="text-input" name="text">
+            <button class="text-get">Get</button>
+            <button class="text-set">Set</button>
+            <input class="text-value" type="text">
+        </p>
+
+        <h2>Radio input</h2>
+        <p>
+            <label><input type="radio" class="radio-input" name="radio" value="1"> One</label>
+            <label><input type="radio" class="radio-input" name="radio" value="2"> Two</label>
+            <label><input type="radio" class="radio-input" name="radio" value="3"> Three</label>
+            <label><input type="radio" class="radio-input" name="radio" value="4"> Four</label>
+            <button class="radio-get">Get</button>
+            <button class="radio-set">Set</button>
+            <input class="radio-value" type="text">
+        </p>
+
+        <h2>Checkbox input</h2>
+        <p>
+            <label><input type="checkbox" class="checkbox-input" name="checkbox" value="1"> One</label>
+            <label><input type="checkbox" class="checkbox-input" name="checkbox" value="2"> Two</label>
+            <label><input type="checkbox" class="checkbox-input" name="checkbox" value="3"> Three</label>
+            <label><input type="checkbox" class="checkbox-input" name="checkbox" value="4"> Four</label>
+            <button class="checkbox-get">Get</button>
+            <button class="checkbox-set">Set</button>
+            <input class="checkbox-value" type="text">
+        </p>
+
+        <h2>Single select</h2>
+        <p>
+            <select class="single-input" name="single">
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+                <option value="4">Four</option>
+            </select>
+            <button class="single-get">Get</button>
+            <button class="single-set">Set</button>
+            <input class="single-value" type="text">
+        </p>
+
+        <h2>Multiple select</h2>
+        <p>
+            <select class="multiple-input" name="multiple" multiple>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+                <option value="4">Four</option>
+            </select>
+            <button class="multiple-get">Get</button>
+            <button class="multiple-set">Set</button>
+            <input class="multiple-value" type="text">
+        </p>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script src="../public/jquery.xval.js"></script>
+        <script>
+            $('.text-get').on('click', function() {
+                $('.text-value').xval($('.text-input').xval());
+            });
+            $('.text-set').on('click', function() {
+                $('.text-input').xval($('.text-value').xval(), { event: 'mychange', args: ['test'] });
+            });
+            $('.text-input').on('mychange', function(e, ...args) {
+                console.info('mychange text', this, this.value, ...args);
+            });
+
+            $('.radio-get').on('click', function() {
+                $('.radio-value').xval($('.radio-input').xval());
+            });
+            $('.radio-set').on('click', function() {
+                $('.radio-input').xval($('.radio-value').xval());
+            });
+            $('.radio-input').on('change', function() {
+                console.info('change radio', this, this.value);
+            });
+
+            $('.checkbox-get').on('click', function() {
+                $('.checkbox-value').xval($('.checkbox-input').xval().join(', '));
+            });
+            $('.checkbox-set').on('click', function() {
+                $('.checkbox-input').xval($('.checkbox-value').xval().split(/\s*\,\s*/));
+            });
+            $('.checkbox-input').on('mychange', function() {
+                console.info('mychange checkbox', this, this.value);
+            });
+
+            $('.single-get').on('click', function() {
+                $('.single-value').xval($('.single-input').xval());
+            });
+            $('.single-set').on('click', function() {
+                $('.single-input').xval($('.single-value').xval());
+            });
+            $('.single-input').on('change', function() {
+                console.info('change single', this, this.value);
+            });
+
+            $('.multiple-get').on('click', function() {
+                $('.multiple-value').xval($('.multiple-input').xval().join(', '));
+            });
+            $('.multiple-set').on('click', function() {
+                $('.multiple-input').xval($('.multiple-value').xval().split(/\s*\,\s*/));
+            });
+            $('.multiple-input').on('change', function() {
+                console.info('change multiple', this, this.value);
+            });
+        </script>
+    </body>
+</html>
